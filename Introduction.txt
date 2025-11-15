@@ -1,0 +1,95 @@
+DSA And Big 0 notations
+
+What is a Data Struture?
+A way of organising and storing data in memory. 
+
+They are broadly classified into 2 types
+1.) Linear Data structures -> Arrays,Stacks,Ques and linked lists
+2.) Non Linear Data structures -> trees and graphs
+
+Linear Data structures:
+
+Arrange data in sequential or linear manner.Each element is attached to its previous and next adjacent element.
+There are mainly 2 types
+1.) Static data structures
+It has a fixed Memory size.
+2.) Dynamic data structures
+Size of the memory can change can change dynamically at run time.They are efficient in memory when compared to static data structures.
+
+The elements are present in the same level allows travering in a single run.
+The time complexity increases with as size of data increases.
+
+Non Linear Data Structures:
+The data is arranged in a hierarchial order. Due to this they cannot be traversed in one run. The time complextity is the same always.
+
+Advantages:
+a.) Language independent
+b.) Improved logic building
+c.) Improved problem solving approach
+d.) Enabled real world problem solving approach
+e.) helps in writing optimised compared
+f.) Adaptibility to emerging tech Stacks
+
+
+Common data operations
+Insertion: Inserting an element to a data structures
+Deletion: Deleting an element to a data structure
+Searching: Searching an element in a data structure
+Traveral: Travering all the elements in a data structure
+Sorting: Arrange the element in an order
+Merging: Combining to similiar data structures
+
+
+Abstract data types
+There are data structures that are define the decalartion of data and Operations but not how they are implemented.
+eg:- Array, Linked list, stack, queue , tree and graphs
+
+Algorithm
+Step by step procedure to solve a problem
+2 main criteria:
+1.) effectiveness -> no of steps to solve a problem
+2.) efficiency -> less time taken and memory to solve the problem
+
+Analysis of an Algorithm helps determine the space and time consumption to execute it. It helps to predict the behaviour of Algorithm without actually implementing it in code.
+
+Type of analysis:
+Asymtotic analysis:
+Way of understanding how an Algorithm behaves or performs with change in size.
+
+Asymtotic notations:
+There are 3 types namely
+1.) Big-O notations -> worst case scenario and the upper bound of the alogorithm
+2.) Omega notations -> Best case scenario and the lower bound of the algorithm
+3.) Theta notations -> Average case scenario  and upper and lower bound of the algorithm
+
+
+Big-O notations:
+1.) O(1) -> constant -> always same amount of time
+eg: Accessing an element in an array.
+2.) O(N) -> linear -> directly proptional to size of data
+eg: Linear search
+3.) O(logn) -> Logarithemic -> complexity growa linearly as input size grows
+eg:Binary search
+4.) O(nlogn) -> Linear arithmetic -> complexity will grow between linear and Exponential
+eg: Heap sort, merge sort
+5.) O(n pow c) -> quadratic or cubic ->directly proptional to the square of the input size
+eg: Bubble sort,search sort,inseration sort and bucket sort
+6.) O(c pow n) -> Exponential -> time taken becomes double with each increase of input size
+eg: fibbanocci number, tower of hanoi
+7.) O(n!) -> factorial -> grows Exponentially with increased size of input
+eg: permutaions on a string, bute force search.
+
+
+Multiple runtime complexity
+While combining multiple runtime complexities, it takes the worst runtime complexity as its runtime complexity;
+eg: O(n) + O(n2) = O(n2);
+
+Problem solving techniques:
+1.) Single and nested loops
+2.) Decrease and conquer, divide and conquer and transfer and conquer.
+3.) Binary search
+4.) BFS AND DFS (Breadth and depth)
+5.) 2 pointer and sliding window
+6.) Data structures
+7.) Dynamic Programming
+8.) Greedy algoritms
