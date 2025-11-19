@@ -1,3 +1,4 @@
+// compare the adjacent elements in an array and swap positons if there are not inposition
 function performBubbleSort(array){
     const arrLength = array.length; //7
     for(let i=0;i<arrLength-1;i++){
