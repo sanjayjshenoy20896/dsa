@@ -1,0 +1,41 @@
+Arrays and Strings
+
+Arrays
+Arrays is fixed data structure to store the data of same data type.They are stored in contagious memory locations, where lowest memory address correspond to the first element of the array and highest memort address corrrespon to the last element of the array.
+
+Elements are accessed by index. The first index is 0.
+Types of array
+1.) Single dimensional array
+2.) 2 dimensional arry - 2D array
+3.) 3 dimensional array  - 3D array
+
+Single dimensional array
+Elements are stored in single row only.
+
+2 dimensional Arrays
+Elements are stored in rows and columns.A mxn matrix which has m rows and n columns.
+
+3 dimensional Arrays
+It is an extension of 2d array with addition of depth. it is a cube with rows,columns and depth.
+
+Advantages:
+constant time access
+Optimal memory usage
+
+Operation on an Arrays
+1.) Insertion
+2.) Traversal
+3.) Deletion
+4.) Searching
+5.) update 
+6.) Sorting
+7.) Merging
+
+Usage:
+1.) Store different variables of same type
+2.) Solving matrix problems
+3.) Sorting algorithem
+4.) Database records are implemented by Arrays
+5.) CPU scheduling
+6.) Used in implementing other data structures like stacks, queues,heaps,linked lists and hash tables
+ 
