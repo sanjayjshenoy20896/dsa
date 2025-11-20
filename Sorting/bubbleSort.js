@@ -2,7 +2,7 @@
 function performBubbleSort(array){
     const arrLength = array.length; //7
     for(let i=0;i<arrLength-1;i++){
-        let swappedStatus = false;
+        let swappedStatus = false; // reset the status at the start every loop
         for(let j = 0;j<arrLength-i-1;j++){
             if(array[j] > array[j+1]){
                 let temp = array[j];
