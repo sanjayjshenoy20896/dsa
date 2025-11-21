@@ -53,7 +53,7 @@ console.log(output);
  * 
  * [-6,-2,4,8,20]
  * 
- * time complexity: between O(N^2) and  O(n * logn)
+ * time complexity: O(n * logn)
  * Worst case -> O(N^2);
  * Average case -> O
  * 

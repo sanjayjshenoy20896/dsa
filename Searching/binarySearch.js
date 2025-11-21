@@ -1,4 +1,4 @@
-
+// time complextity -> o(Logn)
 function performBinarySearch(array,key){
     let start = 0;
     let end = array.length - 1;
@@ -18,7 +18,6 @@ function performBinarySearch(array,key){
     }
     return -1; // Return -1 if not found
 }
-
 
 
 const input = [1,2,3,4,5];

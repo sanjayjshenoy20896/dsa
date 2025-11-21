@@ -1,5 +1,5 @@
 // compare the adjacent elements in an array and swap positons if there are not inposition
-// time complextity -> bubble sort
+// time complextity -> bubble sort -> O(n^2);
 function performBubbleSort(array){
     const arrLength = array.length; //7
     for(let i=0;i<arrLength-1;i++){

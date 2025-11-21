@@ -5,6 +5,8 @@
  * Merge sort is a sorting algorithm that follows the divide and conquer paradigm. It works by recursively breaking down an array into smaller subarrays until each subarray contains only one element (which is inherently sorted). Then, these single-element subarrays are merged back together in a sorted manner.
  * const input = [2,4,1,3,5,9,8]
  * 
+ * time complexity -> O(N LOG N);
+ * 
  */
 
 
