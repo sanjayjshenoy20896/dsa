@@ -127,21 +127,29 @@ function symmetricalEquilateralTriangle(lines){
 
 // symmetricalEquilateralTriangle(6)
 
-//11 incomplete
+//11
+/***
+ * 1
+ * 01
+ * 101
+ * 0101
+ * 10101
+ */
 function makeRightAngledTriangleWithzerosAndOnes(lines){
-    for(let i=1;i<lines;i++){
+    for(let i=0;i<lines;i++){
         let string = "";
-        for(let j=i+1;j<lines-1;j++){
-            if(j%2==0){
-                string+="0"
-            }else{
+        for(let j=0;j<=i;j++){
+            if((i+j)%2==0){
                 string+="1"
+            }else{
+                string+="0"
             }
         }
         console.log(string)
     }
 }
 
+// makeRightAngledTriangleWithzerosAndOnes(4);
 
 
 
@@ -157,3 +165,128 @@ function make2RingAnglesTriangleNextToEachOther(lines){
 
 // make2RingAnglesTriangleNextToEachOther(4)
 
+//13
+/***
+ * 1                          -> i=0; j= 0
+ * 2 3                        -> i=1,j=1  i=1,j=2
+ * 4 5 6
+ * 7 8 9 10
+ * 11 12 13 14 15
+ */
+
+function makeNumberedRightAngledTraingle(lines){
+    let number =1
+    for(let i=0;i<=lines;i++){
+        let str = "";
+        for(let j=1;j<=i;j++){
+            // console.log("i",i);
+            //console.log("j",j)
+            str+=number + " ";
+            number++
+        }
+        console.log(str);
+    }
+}
+//makeNumberedRightAngledTraingle(5);
+
+const alphabets = ["A","B","C","D","E","F","G","H","I","J","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+
+//14
+/***
+ * A
+ * AB
+ * ABC
+ * ABCD
+ * ABCDE
+ */
+
+function makeRightAngledTriangleWithAlphabets(lines){
+    for(let i=0;i<lines;i++){
+        let str =""
+        str = alphabets.slice(0,i+1).join("")
+        console.log(str);
+    }
+}
+
+//makeRightAngledTriangleWithAlphabets(5);
+
+//15
+/***
+ * ABCDE
+ * ABCD
+ * ABC
+ * AB
+ * A
+ * 
+ */
+
+function makeInvertedRightAngledTriangle(lines){
+    let str = alphabets.slice(0,lines+1).join("");
+    for(let i=1;i<=lines;i++){
+        str = str.slice(0,-1);
+        console.log(str)
+    }
+}
+
+//makeInvertedRightAngledTriangle(5);
+
+//16
+/***
+ * A
+ * BB
+ * CCC
+ * DDDD
+ * EEEEE
+ */
+
+function makeContinousAlphabetTriangle(lines){
+    for(let i=0;i<lines;i++){
+        let str = "";
+        str+= alphabets[i].repeat(i+1)
+        console.log(str);
+    }
+}
+
+//makeContinousAlphabetTriangle(5);
+
+//17
+/***
+ *     A
+ *    ABA
+ *   ABCBA
+ *  ABCDCBA
+ */
+// incomplete
+function makeAlphabetSymmetricalEquilateralTriangle(lines){
+    for(let i=1;i<=lines;i++){
+      let pattern = "";
+      for(let j=1;j<=lines-i;j++){
+        pattern+= " "
+      }
+      for(let k=1;k<=i;k++){
+        pattern+="* "
+      }
+      console.log(pattern);  
+    }
+}
+
+
+//18
+/***
+ * E
+ * DE
+ * CDE
+ * BCDE
+ * ABCDE
+ */
+
+function makeAlphabeticalRightAngledTriangle(lines){
+    const alphabetStrings = alphabets.slice(0,lines).reverse()
+    for(let i=1;i<=lines;i++){
+        const str = alphabetStrings.slice(0,i).reverse().join("");
+        console.log(str)
+    }
+}
+//makeAlphabeticalRightAngledTriangle(5);
+
+//19
