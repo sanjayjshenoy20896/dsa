@@ -289,4 +289,41 @@ function makeAlphabeticalRightAngledTriangle(lines){
 }
 //makeAlphabeticalRightAngledTriangle(5);
 
-//19
+//19 -> incomplete
+
+//20 -> incomplete
+
+//21
+function makeASquareMirrorWithSpaces(lines){
+    const patternString = "*";
+    const emptyString = " "
+    for(let i=1;i<=lines;i++){
+        let str = ""
+        if(i === 1  || i === lines){
+            str += patternString.repeat(lines);
+        }else{
+            str += `${patternString}${emptyString.repeat(lines-2)}${patternString}`; 
+        }
+        console.log(str)
+    }
+}
+
+//makeASquareMirrorWithSpaces(4)
+
+//22
+function makeASquareWithFixedNumberOnOutsideWithFilledNumbers(lines){
+    const matrixLength = 2*lines -1;
+    for(let i=0;i<matrixLength;i++){
+        let row = "";
+        for(let j=0;j<matrixLength;j++){
+            const topDist = i;
+            const leftDist = j;
+            const rightDist = matrixLength-1-j;
+            const bottomDist = matrixLength-1-i;
+            const value = lines - Math.min(Math.min(topDist,bottomDist),Math.min(leftDist,rightDist))
+            row+=value;
+        }
+        console.log(row.trim())
+    }
+}
+makeASquareWithFixedNumberOnOutsideWithFilledNumbers(4);
