@@ -156,9 +156,29 @@ const nestedObj = convertDotNotationToNestedObject(dotNotedObj);
 // console.log("nestedObj",nestedObj);  
 // console.log(nestedObj.user.address)
 
-//implement debounce
+// implement debounce
+function debounce(fn,delay){
+    let timer;
 
+    return function(...args){
+        clearTimeout(timer);
+        const timer = setTimeout(() => {fn.apply(this,args)}, delay);
+    }
+}
 // implement throttle
+// throttling ->  technique used to limit the rate at which a function or a block of code can be executed within a given time period.
+
+function throttle(fn,delay){
+    let last = 0;
+    return function (...args) {
+        const now = Date.now();
+        if (now - last >= delay) {
+            last = now;
+            fn.apply(this, args);
+        }
+    };
+}
+
 
 // execute an array of promises in sequence;
 async function executePromisesInSequence(tasks){
@@ -186,3 +206,125 @@ function getOriginalUrlFromShortUrl(shortUrl){
 }
 const originalUrl = getOriginalUrlFromShortUrl(shortUrl);
 // console.log("originalUrl",originalUrl);
+
+//retry logic with max attempts
+async function retryOperation(fn,retries=3){
+    while(retries--){
+        try{
+            return await fn();
+        }catch(err){
+            if(retries === 0){
+                throw err;
+            }
+        }
+    }
+}
+
+// build a simple event emitter
+class EventEmitter{
+    constructor(){
+        this.events = {};
+    }
+
+    on(event,listner){
+        if(!this.events[event]){
+            this.events[event] = [];
+        }
+        this.events[event].push(listner);   
+    }
+    emit(event,data){
+        if(this.events[event]){
+            this.events[event].forEach(listner => listner(data));
+        }
+    }
+}
+// LRU Cache -> Fixed size memory cache that discards the least recently used itens first when it it becomes full
+class LRUCache{
+    constructor(capacity){
+        this.capacity = capacity;
+        this.cache = new Map();
+    }
+    get(key){
+        if(!this.cache.has(key)) return -1;
+        const value = this.cache.get(key);
+        this.cache.delete(key);
+        this.cache.set(key,value);
+        return value;
+    };
+
+    put(key,value){
+        if(this.cache.has(key)) this.cache.delete(key);
+        this.cache.set(key,value);
+        if(this.cache.size > this.capacity){
+            this.cache.delete(this.cache.keys().next().value);
+        }
+    }
+}
+
+// in memory rate limiter (token bucket algorithm)
+class RateLimiter{
+    constructor(limit,interval){
+        this.limit = limit;
+        this.tokens = limit;
+        setInterval(()=>{
+            this.tokens = this.limit;
+        },interval)
+    }
+
+    allowRequest(){
+        while(this.tokens > 0){
+            this.tokens--;
+            return true
+        }
+        return false
+    }
+
+}
+// build a worker pool
+async function workerPool(tasks,workerCount){
+    const results = [];
+    let index = 0;
+    async function worker(){
+        while(index< tasks.length){
+            let i = index++;
+            results[i] = await tasks[i]();
+        }
+    }
+    const workers = Array(workerCount).fill(null).map(()=>worker())
+    await Promise.all(workers);
+    return results;
+}
+
+// implement express like middleware
+function applyMiddleware(middlewares) {
+  return function(req, res) {
+    let i = 0;
+
+    function next() {
+      if (i < middlewares.length) {
+        const mw = middlewares[i++];
+        mw(req, res, next);
+      }
+    }
+    next();
+  };
+}
+
+
+// single pub/sub pattern
+class PubSub {
+  constructor() {
+    this.subs = {};
+  }
+
+  subscribe(event, fn) {
+    if (!this.subs[event]) this.subs[event] = [];
+    this.subs[event].push(fn);
+  }
+
+  publish(event, data) {
+    this.subs[event]?.forEach(fn => fn(data));
+  }
+}
+
+

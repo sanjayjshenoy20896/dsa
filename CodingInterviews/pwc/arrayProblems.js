@@ -133,3 +133,27 @@ function twoSumBruteForce(arr,target){
 }
 const result = twoSumBruteForce([2,7,11,15,6,3],9);
 // console.log("bruteforce result",result);
+
+
+// merge intervals
+
+// rotate array
+function leftRotateArray(arr,positions){
+    const n  = arr.length;
+    positions = positions % n; // in case positions is greater than array length
+    return arr.slice(positions).concat(arr.slice(0, positions));
+}
+
+function rightRotateArray(arr,positions){
+    const n  = arr.length;
+    positions = positions % n; // in case positions is greater than array length
+    return arr.slice(n-positions).concat(arr.slice(0, n - positions));
+}
+
+const originalArray = [1, 2, 3, 4, 5];
+const leftRotatedArray = leftRotateArray(originalArray, 2);
+const rightRotatedArray = rightRotateArray(originalArray, 2);
+console.log("Left Rotated Array:", leftRotatedArray); // Output: [3, 4, 5, 1, 2]
+console.log("Right Rotated Array:", rightRotatedArray); // Output: [4, 5, 1, 2, 3]
+
+// peak element in array
