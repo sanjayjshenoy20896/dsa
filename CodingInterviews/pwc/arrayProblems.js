@@ -153,7 +153,22 @@ function rightRotateArray(arr,positions){
 const originalArray = [1, 2, 3, 4, 5];
 const leftRotatedArray = leftRotateArray(originalArray, 2);
 const rightRotatedArray = rightRotateArray(originalArray, 2);
-console.log("Left Rotated Array:", leftRotatedArray); // Output: [3, 4, 5, 1, 2]
-console.log("Right Rotated Array:", rightRotatedArray); // Output: [4, 5, 1, 2, 3]
+// console.log("Left Rotated Array:", leftRotatedArray); // Output: [3, 4, 5, 1, 2]
+// console.log("Right Rotated Array:", rightRotatedArray); // Output: [4, 5, 1, 2, 3]
 
 // peak element in array
+function findPeakElement(arr){
+    let low  = 0;
+    let high = arr.length -1;
+    while(low < high){
+        let mid = Math.floor((low + high)/2);
+        if(arr[mid] > arr[mid + 1]){
+            high = mid;
+        }else{
+            low = mid + 1;
+        }
+    }
+    return arr[low];
+}
+const peakElement = findPeakElement([1,3,20,4,1,0,5,6]);
+// console.log("peakElement",peakElement);  
