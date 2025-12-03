@@ -104,3 +104,19 @@ function getDivisors(num){
 }
 const divisors = getDivisors(12);
 // console.log(divisors); //output: [1,2,3,4,6,12]
+
+
+// find if the number is odd or even without bit maniplualation or modulus
+function checkIfNumberIsOddorEven(num){
+    // divide and get the integer part ->2
+    const dividedNum =Math.floor(num/2);
+
+    // multiply by the same offset -> 2
+    const backMultipled = Math.floor(dividedNum*2);
+    const status = backMultipled === num ? "even" : "odd";
+    return status;
+}
+
+const numberToTest = 6;
+const testResult = checkIfNumberIsOddorEven(numberToTest)
+console.log(testResult)
