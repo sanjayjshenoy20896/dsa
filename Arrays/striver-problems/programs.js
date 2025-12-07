@@ -326,3 +326,27 @@ function findMajorityElement(arr){
 }
 // console.log(findMajorityElement([7, 0, 0, 1, 7, 7, 2, 7, 7]))
 
+// move non zeros to end of the array using in place logic
+const arr = [1,0,9,0,3,0,0,6];
+// out put -> 1,9,3,6,0,0,0,0
+
+function moveZerosToTheEnd(inputArray){
+  const arrLen = inputArray.length;
+  let  zerosCount = 0;
+  for(let i=0;i<arrLen - 1;i++){
+    if(inputArray[i] === 0){
+      inputArray.splice(i,1)
+      zerosCount++;
+      i--;    
+    }
+  }
+  while(zerosCount>=0){
+    inputArray.push(0)
+    zerosCount--
+  }
+  return inputArray
+}
+
+const output = moveZerosToTheEnd(arr);
+console.log(output)
+
