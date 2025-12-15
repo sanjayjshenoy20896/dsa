@@ -162,7 +162,7 @@ function debounce(fn,delay){
 
     return function(...args){
         clearTimeout(timer);
-        const timer = setTimeout(() => {fn.apply(this,args)}, delay);
+        timer = setTimeout(() => {fn.apply(this,args)}, delay);
     }
 }
 // implement throttle
