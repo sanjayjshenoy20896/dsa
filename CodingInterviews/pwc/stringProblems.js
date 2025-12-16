@@ -327,4 +327,97 @@ class PubSub {
   }
 }
 
+// password test:
+// // JavaScript Program to Check if a string contains
+// uppercase, lowercase, special characters and
+// numeric values
 
+function isValidPassword(str){
+     let pattern = new RegExp(
+        "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[-+_!@#$%^&*.,?]).+$"
+    );
+    if(pattern.test(str)){
+        return true
+    }else{
+        return false
+    }
+}
+
+const validity = isValidPassword("Sanjay@20896");
+// console.log("validity",validity);
+
+// split version
+function validatePassword(password) {
+  // Regex to check for at least one lowercase letter (a-z)
+  const lowerCaseRegex = /[a-z]/;
+  // Regex to check for at least one uppercase letter (A-Z)
+  const upperCaseRegex = /[A-Z]/;
+  // Regex to check for at least one digit (0-9)
+  const numberRegex = /[0-9]/;
+  // Regex to check for at least one special character
+  // Note: this definition of "special character" includes symbols and punctuation, 
+  // excluding alphanumeric characters.
+  const specialCharRegex = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+
+  let isValid = true;
+  let errors = [];
+
+  if (!lowerCaseRegex.test(password)) {
+    isValid = false;
+    errors.push("Missing at least one lowercase letter.");
+  }
+  if (!upperCaseRegex.test(password)) {
+    isValid = false;
+    errors.push("Missing at least one uppercase letter.");
+  }
+  if (!numberRegex.test(password)) {
+    isValid = false;
+    errors.push("Missing at least one number.");
+  }
+  if (!specialCharRegex.test(password)) {
+    isValid = false;
+    errors.push("Missing at least one special character.");
+  }
+
+  return { 
+    isValid: isValid, 
+    errors: errors,
+    message: isValid ? "Password meets all criteria." : "Password does not meet criteria."
+  };
+}
+
+// --- Example Usage ---
+
+const result1 = validatePassword("Password123!");
+console.log(`Result for "Password123!":`, result1);
+// Output: isValid: true, message: "Password meets all criteria."
+
+const result2 = validatePassword("noPass");
+console.log(`Result for "noPass":`, result2);
+// Output: isValid: false, errors: ["Missing at least one uppercase letter.", "Missing at least one number.", "Missing at least one special character."]
+
+const result3 = validatePassword("Testing*4U");
+console.log(`Result for "Testing*4U":`, result3);
+// Output: isValid: true, message: "Password meets all criteria."
+
+
+// individual password criteria
+
+function checkAllCriteria(str) {
+  const regex = new RegExp(
+    // Lookahead to assert a lowercase character exists
+    "(?=.*[a-z])" +
+    // Lookahead to assert an uppercase character exists
+    "(?=.*[A-Z])" +
+    // Lookahead to assert a digit exists
+    "(?=.*[0-9])" +
+    // Lookahead to assert a special character exists (defined here as non-alphanumeric)
+    "(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\|,.<>\\/?])"
+  );
+  
+  return regex.test(str);
+}
+
+// --- Example Usage ---
+console.log(checkAllCriteria("Test1!")); // true
+console.log(checkAllCriteria("test1"));  // false (missing uppercase and special char)
