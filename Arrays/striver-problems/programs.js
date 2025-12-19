@@ -594,8 +594,9 @@ function findMajorityElement3(arr){
     }
   }
 }
-console.log("find majprity number size:n/3");
-console.log(findMajorityElement3([1, 2, 1, 1, 3, 2]))
+// time complexity -> O(N), Space complexity -> O(N)
+// console.log("find majprity number size:n/3");
+// console.log(findMajorityElement3([1, 2, 1, 1, 3, 2]))
 // buy and sell stocks
 
 // bruteforce approach:
