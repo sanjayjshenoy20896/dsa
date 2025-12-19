@@ -120,3 +120,15 @@ function checkIfNumberIsOddorEven(num){
 const numberToTest = 6;
 const testResult = checkIfNumberIsOddorEven(numberToTest)
 console.log(testResult)
+
+
+// to check if a number is power of 2 or not
+function isNumPowerOf2(num){
+  if(num<=0){
+    return false
+  }
+  return (num & (num-1)) ===0;
+}
+
+// console.log(isNumPowerOf2(16))
+// console.log(isNumPowerOf2(25))

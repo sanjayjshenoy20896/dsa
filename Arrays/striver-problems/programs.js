@@ -8,7 +8,7 @@ function findPairsThatResolvesToNumber(arr,target){
   for(let i=0;i<arr.length;i++){
     for(j=i+1;j<arr.length;j++){
       const sum = arr[i] + arr[j];
-      console.log(sum);
+      // console.log(sum);
       if(sum === 10){
         results.push([arr[i],arr[j]])
       }
@@ -125,7 +125,7 @@ function leftRotateArrayByOnePlace(arr){
   arr[arr.length-1] = temp;
   return arr;
 }
-console.log(leftRotateArrayByOnePlace([1,2,3,4]))
+// console.log(leftRotateArrayByOnePlace([1,2,3,4]))
 
 
 // left rotate by N places
@@ -166,10 +166,35 @@ function moveAllZerosToend(arr){
 }
 // console.log(moveAllZerosToend([1,0,4,5,6,0,0,8,4]))
 
+
+// move zeros to the end without using extra variables;
+function moveAllZerosToTheEnd(arr){
+  let zeroCount = 0;
+  const arrLength = arr.length;
+  for(let i=0;i<arrLength-1;i++){
+    if(arr[i] === 0){
+      arr.splice(i,1);
+      zeroCount+=1;
+      i--
+    }
+  }
+  while(zeroCount!=0){
+    arr.push(0);
+    zeroCount-=1;
+  }
+  return arr;
+}
+// console.log("moveAllZerosToTheEnd");
+// console.log(moveAllZerosToTheEnd([1,0,4,5,6,0,0,8,4]))
+// time complexity -> (m+n log(m+n))
+// space complexity -> O(m+N)
 function findUnionOfTwoArrays(arr1,arr2){
   let array = new Set([...arr1,...arr2]);
   return Array.from(array).sort((a,b)=> a-b);
 }
+
+//union of two arrays using 2 pointer approach.
+
 
 
 function findMissingNumberInArray(arr){
@@ -286,7 +311,7 @@ function sortAnArrayWithNumbersTogether(arr){
   }
   return [].concat(Array(zeros).fill(0)).concat(Array(ones).fill(1)).concat(Array(twos).fill(2)).concat(...others);
 }
-console.log(sortAnArrayWithNumbersTogether([0,1,2,0,0,2,1,1,3,4,0,0,1,2,6]))
+// console.log(sortAnArrayWithNumbersTogether([0,1,2,0,0,2,1,1,3,4,0,0,1,2,6]))
 
 // two sum problem
 function twoSum(arr,target){
@@ -303,7 +328,28 @@ function twoSum(arr,target){
     return numMap; 
 }
 //time complexity O(n) , space complexity O(n)
+
+// two sum problem -> bruteforce problem
+function TwoSumProblemBruteforce(arr,target){
+  let arrLen = arr.length;
+  for(let i=0;i<arrLen;i++){
+    for(let j=i+1;j<arrLen;j++){
+      if(arr[j] + arr[i] === target){
+        return {
+          indices:[i,i+1],
+          values: [arr[i],arr[i+1]]
+        }
+      }
+    }
+  }
+  return {
+    indices:[-1,-1],
+    values:[]
+  }
+}
 const indices = twoSum([2,7,11,15,6,3],9);
+const twoSumIndices = TwoSumProblemBruteforce([2,7,11,15,6,3],9)
+// console.log("twoSumIndices",twoSumIndices);
 // console.log("indices",indices);
 
 //Majority element - > The majority element of an array is an element that appears more than n/2 times in the array. The array is guaranteed to have a majority element.
@@ -348,83 +394,345 @@ function moveZerosToTheEnd(inputArray){
 }
 
 const output = moveZerosToTheEnd(arr);
-console.log(output)
+// console.log(output)
 
+// find the number that appears once and rest twice
 
-// employee problem -> TCS
-var employeeList = [
-
-	{
-
-		id:1,
-
-		name: 'Raju',
-
-		managerId: 2,
-
-		status: 1
-
-	},
-
-	{
-
-		id:2,
-
-		name: 'Binu',
-
-		managerId: 3,
-
-		status: 1
-
-	},
-
-	{
-
-		id:3,
-
-		name: 'XYZ',
-
-		managerId: 4,
-
-		status: 0
-
-	},
-
-	{
-
-		id:4,
-
-		name: 'Gopu',
-
-		managerId: null,
-
-		status: 1
-
-	},
-
-];
-
-
-function getManagerEmployeeMapping(arr){
-    
-    // const obj = {};
-    // const employeeObj = arr.find((val)=> val.name === key);
-    // const managerObj = arr.find((val)=> val.id == employeeObj.managerId);
-    // console.log(employeeObj);
-    // console.log(managerObj);
-    // obj[employeeObj.name] = managerObj.name
-    // console.log(obj);
-    const employeeMapping = arr.map((item)=>{
-      const managerObj = arr.find((p)=>p.managerId === item.managerId)
-      console.log(managerObj);
-      if(managerObj.id){
-        return {
-          name:"sanjay"
-          // managerObj[name] = arr.find((si)=> si.managerId === managerObj.id).name
-        }
+//bruteforce 
+// time complexity -> O(n2)
+function findANumberThatAppearsTwiceAndRestOnceBruteforce(arr){
+  const n = arr.length;
+  for(let i=0;i<n;i++){
+    let num = arr[i];
+    let count = 0
+    for(let j =1;j<n;j++){
+      if(arr[j] === num){
+        count+=1;
       }
-    })
-
+    }
+    if(count === 1){
+      return num;
+    }
+  }
+  return -1;
 }
-const newList = getManagerEmployeeMapping(employeeList);
+// console.log(findANumberThatAppearsTwiceAndRestOnceBruteforce([2,2,1]));
 
+//  using hashmap for spotting occurance and looping through hashmap
+function findANumberThatAppearsTwiceAndRestOnceHashMapApproach(arr){
+  const n = arr.length;
+  const max = Math.max(...arr);
+  // console.log("max: ",max);
+  const hashmap = Array(max + 1).fill(0);
+  for(let i = 0;i<n;i++){
+    hashmap[arr[i]]++;
+  }
+  // console.log(hashmap)
+  for(let j=0;j<n;j++){
+    if(hashmap[arr[j]] ===1){
+      return j
+    }
+  }
+  return -1;
+}
+// console.log(findANumberT
+// findANumberThatAppearsTwiceAndRestOnceHashMapApproach([2,2,1]));
+
+// optimal approach: using XOR appraoch:
+function findANumberThatAppearsTwiceAndRestOnceusingXORApproach(arr){
+  let xor = 0;
+  for(let i = 0;i<arr.length;i++){
+    xor^=arr[i]
+  }
+  return xor;
+}
+// console.log(findANumberThatAppearsTwiceAndRestOnceusingXORApproach([2,2,1,3]))
+
+//Longest Subarray with given Sum K(Positives)
+
+function findLongestSubArrayWithTargetSum(arr,target){
+ let n = arr.length;
+ let left = 0;
+ let right = 0;
+ let maxLen = 0;
+ let sum = arr[0];
+
+ while(right <n){
+
+  //shrink the window if sum exceeds target
+  while(left<=right && sum > target){
+    // decrement the sum with left pointer index and increment the left pointer.
+    sum -= arr[left];
+    left++;
+  }
+  // sum is equal to target, find the maxLength between currentlength and past length
+  if(sum === target){
+    maxLen = Math.max(maxLen,right-left+1);
+  }
+  // increment the right pointer
+  right++;
+  // if right is less than the length od array, add the sum with right pointer
+  if(right<n) sum+=arr[right]
+
+ }
+ return maxLen;
+}
+
+// console.log(findLongestSubArrayWithTargetSum([10, 5, 2, 7, 1, 9],15))
+
+
+// in palce sort an array by placing all zeros together, all ones together and all twos together;
+// Bruteforce
+function sortArrayWithZeroOneTwo(arr){
+  const arrLen = arr.length;
+  let zeroCount = 0;
+  let oneCount = 0;
+  let twoCount = 0;
+  for(let i=0;i<arrLen;i++){
+    if(arr[i] === 0){
+      arr.splice(i,1)
+      zeroCount++
+    }else if(arr[i] === 1){
+      arr.splice(i,1);
+      oneCount++
+    }else if(arr[i] === 2){
+      arr.splice(i,1)
+      twoCount++
+    }
+  }
+  while(twoCount!=0){
+    arr.unshift(2)
+  }
+  while(oneCount!=0){
+    arr.unshift(1)
+  }
+  while(zeroCount!=0){
+    arr.unshift(0)
+  }
+  return arr;
+}
+// console.log(sortAnArrayWithNumbersTogether([1, 0, 2, 1, 0,3]))
+
+// solve using counting nos approach
+function sortAnArrayWithNumbersTogetherCountingApproach(arr){
+  const arrLen = arr.length;
+  let zeroCount = 0;
+  let oneCount = 0;
+  let twoCount = 0;
+  for(let i=0;i<arrLen;i++){
+    if(arr[i] === 0){
+      zeroCount++
+    }else if(arr[i] === 1){
+      oneCount++
+    }else if(arr[i] === 2){
+      twoCount++
+    }
+  }
+  for(let i=0;i<zeroCount;i++){
+    arr[i] = 0
+  }
+  for(let i=zeroCount;i<zeroCount+oneCount;i++){
+    arr[i] = 1
+  }
+  for(let i= zeroCount+oneCount; i< zeroCount+oneCount+twoCount;i++){
+    arr[i] = 2
+  }
+  return arr;
+}
+// console.log("sortAnArrayWithNumbersTogetherCountingApproach");
+// console.log(sortAnArrayWithNumbersTogetherCountingApproach([1, 0, 2, 1, 0,3,4]))
+// solve using dutch national flag 
+// incomplete
+function sortAnArrayWithNumbersTogether(arr){
+  const arrLen = arr.length;
+  let low = 0; 
+  let high = arrLen - 1;
+  let mid = 0;
+  while(mid<=high){
+    if(arr[mid] == 0){
+
+    }
+
+  }
+}
+
+
+
+// find majority element (N/2)
+// bruteforce
+function findMajorityElement(arr){
+  const arrLen = arr.length;
+  let map = new Map();
+  for(num of  arr){
+    map.set(num,(map.get(num) || 0) + 1)
+  }
+  for(let [key,value] of map.entries()){
+    if(value > arrLen/2){
+      return key;
+    }
+  }
+}
+
+
+// time complexity -> O(N), Space complexity -> O(N)
+// console.log(findMajorityElement([2, 2, 1, 1, 1, 2, 2]))
+
+//optimised approach -> incomplete
+function findMajorityElementOptimalApproach(arr){
+  
+}
+// find Majority element -> n/3
+function findMajorityElement3(arr){
+   const arrLen = arr.length;
+  let map = new Map();
+  for(num of  arr){
+    map.set(num,(map.get(num) || 0) + 1)
+  }
+  for(let [key,value] of map.entries()){
+    if(value > arrLen/3){
+      return key;
+    }
+  }
+}
+console.log("find majprity number size:n/3");
+console.log(findMajorityElement3([1, 2, 1, 1, 3, 2]))
+// buy and sell stocks
+
+// bruteforce approach:
+function buyAndSellStocks(arr){
+  let maxProfit = 0;
+  for(let i=0;i<arr.length;i++){
+    for(let j = i+1;j<arr.length;j++){
+      //calculate profit
+      let profit = arr[j] - arr[i];
+      maxProfit = Math.max(maxProfit,profit)
+    }
+  }
+  return maxProfit;
+}
+// time-complexity -> O(N2) space-complexity -> 0(1)
+// console.log(buyAndSellStocks([7,1,5,3,6,4]));
+
+//optimal approach
+function buyAndSellStocksOptimalApproach(arr){
+  let minPrice = Infinity;
+  let maxProfit = 0;
+  for(num in arr){
+    if(num < minPrice){
+      minPrice = num;
+    }else{
+      maxProfit = Math.max(maxProfit,num-minPrice)
+    }
+  }
+  return maxProfit;
+}
+// time complexity -> O(N) Space complexity -> O(1)
+// console.log(buyAndSellStocksOptimalApproach([7,1,5,3,6,4]));
+
+// alternatively arrange +ve and -ve numbers
+function alternatePositiveAndNegativeNumbers(arr){
+  let positiveArr = [];
+  let negativeArr = [];
+  let arrLen = arr.length;
+  for(let i=0;i<arr.length;i++){
+    if(arr[i] >=0){
+      positiveArr.push(arr[i])
+    }else{
+      negativeArr.push(arr[i])
+    }
+  }
+  for(let i=0;i<Math.floor(arrLen/2);i++){
+   arr[2*i] = positiveArr[i]
+   arr[2*i + 1] = negativeArr[i] 
+  }
+  return arr;
+}
+// time complexity -> O(N + N/2) space complexity ->O(N/2 + N/2);
+// console.log(alternatePositiveAndNegativeNumbers([1,2,-4,-5]))
+
+function alternatePositiveAndNegativeNumbersOptimalApproach(arr){
+  const arrLen = arr.length;
+  const positive = 0;
+  const negative = 1;
+  const ans = new Array(arrLen).fill(0);
+  for(let i=0;i<arr.length;i++){
+    if(arr[i]<0){
+      ans[negative] = arr[i];
+      negative+=2;
+    }else{
+      ans[positive] = arr[i];
+      positive+=2
+    }
+  }
+  return ans
+}
+// time complexity -> O(N) Space complexity -> O(N)
+// console.log(alternatePositiveAndNegativeNumbersOptimalApproach([1,2,-4.-5]))
+
+
+// leaders in a array
+
+//bruteforce method:
+function  findANumberLeadersInArrayBruteforce(arr){
+  let ans = [];
+  for(let i=0;i<arr.length;i++){
+    let leader = true;
+    for(let j=i+1;j<arr.length;j++){  
+      if(arr[j] >= arr[i]){
+        leader = false;
+        break;
+      }
+    }
+    if(leader){
+      ans.push(arr[i])
+    }
+  }
+  return ans;
+}
+// time complexity -> O(N2) Space complexity -> O(1)
+// console.log(findANumberLeadersInArrayBruteforce([1, 2, 5, 3, 1, 2]))
+
+//optimal solution
+function findANumberLeadersInArrayOptimal(arr){
+  let ans = [];
+  let max = arr[arr.length - 1];
+  ans.push(arr[arr.length-1]);
+  for(let i=arr.length-2;i>=0;i--){
+    if(arr[i] > max){
+      ans.push(arr[i]);
+      max = arr[i]
+    }
+  }
+  return ans.reverse();
+}
+// time complexity -> O(n) space complexity -> O(1)
+// console.log(findANumberLeadersInArrayOptimal([1,2,5,3,1,2]));
+
+// utility
+function linearSearch(nums,key){
+  for(let i=0;i<nums.length;i++){
+    if(nums[i] === key){
+      return true;
+    }
+  }
+}
+// longest sequence of consecutive numbers
+function longestSequenceOfConsecutiveNumbers(nums){
+  const arrLen = nums.length;
+  let longest = 1;
+  if(arrLen === 0){
+    return 0;
+  }
+  for(let i=0;i<arrLen;i++){
+    let x = nums[i];
+    let cnt = 1;
+    while(linearSearch(nums,x+1)){
+      x+=1;
+      cnt+=1
+    }
+    longest = Math.max(longest,cnt);
+  }
+  return longest;
+}
+// time complexity -> O(N2) space complexity -> O(1)
+// console.log(longestSequenceOfConsecutiveNumbers([100, 4, 200, 1, 3, 2]));
