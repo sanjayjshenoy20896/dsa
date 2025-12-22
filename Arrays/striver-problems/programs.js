@@ -737,3 +737,162 @@ function longestSequenceOfConsecutiveNumbers(nums){
 }
 // time complexity -> O(N2) space complexity -> O(1)
 // console.log(longestSequenceOfConsecutiveNumbers([100, 4, 200, 1, 3, 2]));
+
+
+
+// second largest number and second smallest element in an unsorted array:
+
+
+// bruteforce method: Sort the array and find the appropraitye method
+// better solution:
+// steps:
+// perform a single traversal to find the largest  and smallest element
+// perform a traversal to find the element greater the smallest element -> second smallest
+// perform a traversal to find the element less then the largesr elemnt -> second largest 
+function findSecondLargestElementAndSecondSmallestElement(arr){
+  // length of array
+  let arrLen = arr.length;
+  
+  // initialise variables to record the second largest and second smallest
+  let smallest = Infinity;
+  let second_smallest = Infinity;
+  let largest = -Infinity;
+  let second_largest = -Infinity;
+
+  if(arrLen === 0 || arrLen === 1){
+    return {
+      smallest:-1,
+      second_smallest:-1,
+      largest:-1,
+      second_largest:-1
+    }
+  }
+  // find the largest element and the smallest element;
+  for(let i=0;i<arrLen;i++){
+    smallest = Math.min(smallest,arr[i]);
+    largest  = Math.max(largest,arr[i]);
+  }
+
+  // find the second laregst element and second smallest elemnt
+  for(let i=0;i<arrLen;i++){
+    if(arr[i] < second_smallest && arr[i]!=smallest){
+      second_smallest = arr[i]
+    }
+    if(arr[i] > second_largest && arr[i]!=largest){
+      second_largest = arr[i]
+    }
+  }
+  return {
+    smallest,
+    largest,
+    second_smallest,
+    second_largest
+  }
+}
+// 1 -> smallest
+// 2 -> second smallest
+// 7 -> largest
+// 6 -> second largest
+// time complexity -> 0(N) space complexity -> 0(1)
+// console.log(findSecondLargestElementAndSecondSmallestElement([1, 2, 4, 6, 7, 5]));
+
+// Longest Subarray with sum K | [Postives and Negatives]
+// Given an array and a sum k, we need to print the length of the longest subarray that sums to k.
+
+// bruteforce
+function findLongestSubArrayWithTargetSum(arr,k){
+  let arrLen = arr.length;
+  let maxSumLen = 0;
+
+  // 2 nested loops through the length of array
+  for(let i=0;i<arrLen;i++){
+    for(let j=i;j<arrLen;j++){
+      let sum = 0;
+      //calculate the sum of subarray from   i to j 
+      for(let index = i;index<=j;index++){
+        sum+=arr[index];
+      }
+      
+      // check if sum  === k, compute the max length of subarray with target sun
+      if(sum == k){
+        maxSumLen = Math.max(maxSumLen,j-i+1);
+      }      
+    }
+  }
+  return maxSumLen;
+}
+// time complexity -> O(N3) space complexity -> O(1);
+// console.log(findLongestSubArrayWithTargetSum([2,3,5],5));
+// console.log(findLengthOfSubarrayForTargetSum([-1,1,1],1));
+
+// better approach
+function findLongestSubArrayWithTargetSumBetterApproach(arr,k){
+  let arrLen  = arr.length;
+  let maxSumLen = 0;
+
+  for(let i=0;i<arrLen;i++){
+    let sum = 0;
+    for(let j=i;j<arrLen;j++){
+      // add the sum with current j index
+      sum +=arr[j];
+      // check sum is equal to target sum  
+      if(sum === k){ 
+        // Calculate the length of the subarray (j - i + 1)
+        // Update maxLen if this subarray is longer 
+        maxSumLen = Math.max(maxSumLen,j-i+1);
+      }
+
+    }
+  }
+  return maxSumLen;
+}
+
+// time complexity -> O(N2) Space complexity -> 0(1)
+// console.log(findLongestSubArrayWithTargetSumBetterApproach([2,3,5],5));
+// console.log(findLongestSubArrayWithTargetSumBetterApproach([-1,1,1],1));
+
+// count length of subarray whose target sum equals k
+// bruteforce approach
+function countLengthOfSubArrayWithTargetSum(arr,k){
+  let arrLen =arr.length;
+  let count = 0;
+  for(let i=0;i<arrLen;i++){
+    let sum = 0;
+    for(let j=i;j<arrLen;j++){
+      sum+=arr[j]
+
+      if(sum === k){
+        count+=1;
+      }
+    }
+    
+  }
+  return count;
+}
+// time complexity -> O(N2) Space complexity -> 0(1)
+console.log(countLengthOfSubArrayWithTargetSum([3,1,2,4],6));
+console.log(countLengthOfSubArrayWithTargetSum([1,2,3],3))
+
+
+// Pascal Triangle
+// N=5 -> length of the triangle
+// approach 1: 
+function generatePascalTriangle(numRows){
+  let triangle = [];
+
+  for(let i=0;i<numRows;i++){
+    let row = new Array(i+1).fill(1);
+    for(let j=1;j<i;j++){
+      row[j] = triangle[i-1][j-1] + triangle[i-1][j]
+    }
+    triangle.push(row)
+  }
+  triangle.forEach((row)=>
+    console.log(row.join(" "))
+  )
+}
+
+// time complexity -> O(n2), Space complexity O(n2)
+// generatePascalTriangle(3);
+
+// approach 2
