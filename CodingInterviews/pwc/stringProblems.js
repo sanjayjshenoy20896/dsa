@@ -421,3 +421,10 @@ function checkAllCriteria(str) {
 // --- Example Usage ---
 console.log(checkAllCriteria("Test1!")); // true
 console.log(checkAllCriteria("test1"));  // false (missing uppercase and special char)
+
+
+// Given a string s, return the length of the longest substring without repeating characters.
+
+// Input: "abcabcbb"
+// Output: 3
+// Explanation: longest substring = "abc"
