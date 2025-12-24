@@ -389,15 +389,15 @@ function validatePassword(password) {
 // --- Example Usage ---
 
 const result1 = validatePassword("Password123!");
-console.log(`Result for "Password123!":`, result1);
+// console.log(`Result for "Password123!":`, result1);
 // Output: isValid: true, message: "Password meets all criteria."
 
 const result2 = validatePassword("noPass");
-console.log(`Result for "noPass":`, result2);
+// console.log(`Result for "noPass":`, result2);
 // Output: isValid: false, errors: ["Missing at least one uppercase letter.", "Missing at least one number.", "Missing at least one special character."]
 
 const result3 = validatePassword("Testing*4U");
-console.log(`Result for "Testing*4U":`, result3);
+// console.log(`Result for "Testing*4U":`, result3);
 // Output: isValid: true, message: "Password meets all criteria."
 
 
@@ -419,8 +419,8 @@ function checkAllCriteria(str) {
 }
 
 // --- Example Usage ---
-console.log(checkAllCriteria("Test1!")); // true
-console.log(checkAllCriteria("test1"));  // false (missing uppercase and special char)
+// console.log(checkAllCriteria("Test1!")); // true
+// console.log(checkAllCriteria("test1"));  // false (missing uppercase and special char)
 
 
 // Given a string s, return the length of the longest substring without repeating characters.
@@ -428,3 +428,26 @@ console.log(checkAllCriteria("test1"));  // false (missing uppercase and special
 // Input: "abcabcbb"
 // Output: 3
 // Explanation: longest substring = "abc"
+// sliding window
+function findLengthOfLongestSubStringWithoutRepeat(str){
+    let charSet = new Set();
+    let left = 0; //initialise to start of the window
+    let maxLength = 0;
+    
+    for(let right = 0;right <str.length;right++){
+        // If the character at the right pointer is already in the set, 
+        // shrink the window from the left until the duplicate is removed.
+        while(charSet.has(str[right])){
+            charSet.delete(str[left])
+            left++
+        }
+
+        // add current character to the character set and compute the maxLength
+        charSet.add(str[right])
+        maxLength = Math.max(maxLength,right-left +1)
+    }
+    return maxLength;
+}
+console.log(findLengthOfLongestSubStringWithoutRepeat("abcabcbb")); //3
+console.log(findLengthOfLongestSubStringWithoutRepeat("bbbb")) //1
+console.log(findLengthOfLongestSubStringWithoutRepeat("pwwkew")) //3
