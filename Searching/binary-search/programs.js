@@ -113,7 +113,7 @@ function findFloor(arr,key){
     let left = 0;
     let right  = arrLen - 1;
     let floor = -1; 
-    while(left >= right){
+    while(left <= right){
         let mid = Math.floor((left + right)/2);
         if(arr[mid] <= key){
             floor = arr[mid];
@@ -147,6 +147,24 @@ function findLastOccurance(arr,key){
 }
 // console.log(findLastOccurance([1,2,2,2,3,4,5],2)); //3
 
+function findLastOccuranceUsingBS(arr,key){
+    let left = 0;
+    let right = arr.length - 1;
+    let result =-1;
+    while(left <= right){
+        const mid = Math.floor((left + right)/2);
+        if(arr[mid] === key){
+            result = mid;
+            left = mid + 1; // Continue searching in the right half
+        }else if(arr[mid] < key){
+            left = mid + 1;
+        }else{
+            right = mid - 1;
+        }
+    }
+    return result;
+}
+// console.log(findLastOccuranceUsingBS([1,2,2,2,3,4,5],2)); //3
 // find number of occurance of a number in a sorted array;
 function findNumberofOccuranceOfKey(arr,key){
     let count = 0;
@@ -160,21 +178,182 @@ function findNumberofOccuranceOfKey(arr,key){
 // console.log(findNumberofOccuranceOfKey([1,2,2,2,3,4,5],2)); //3
 
 
-// search in rotated sorted array
-// bruteforce -> linear search for a key
-function searchInRotatedSortedArray(arr,key){
-    let left = 0;
-    let right = arr.length - 1;
-    while(left <= right){
-        const mid = Math.floor((left + right)/2);
-        if(arr[mid] === key){
-          return mid;
-        }else if(arr[mid] < key){
-            left = mid +1;
+// Search in rotated array
+// bruteforce algorithm -> linear search for a key
+// binary search algorithm
+function searchkeyInRotatedArray(nums,target){
+    let low = 0;
+    let high = nums.length -1;
+
+    while(low<=high){
+        const mid = Math.floor((low+high)/2);
+
+        // if target found in mid
+        if(nums[mid] === target){
+            return mid
+        }
+
+        // if left part is sorted
+        if(nums[low] < nums[high]){
+            if(nums[low] <= target && target<nums[mid]){
+                high = mid-1
+            }else{
+                low = mid +1
+            }
         }else{
-            right = mid -1;
+            if(nums[mid] < target && target<=nums[high]){
+                low = mid+1;
+            }else{
+                high = mid-1
+            }
         }
     }
+    return -1;
+}
+// console.log(searchkeyInRotatedArray([7,8,1,2,3,4,5,6],5));
+
+// search an element in a rotated array. The array may contain duplicates
+function searchkeyInRotatedArrayWithDuplicates(arr,key){
+    let low = 0;
+    let high = arr.length -1;
+    let index = false;
+    while(low<=high){
+        const mid = Math.floor((low+high)/2);
+        if(arr[mid] === key) index = true
+        if(arr[low]  === arr[mid] && arr[low] === arr[high]){
+            low++;
+            high--
+        }
+        if(arr[low] <= arr[mid]){
+            if(arr[low] <= key && key<=arr[mid]){
+                high = mid-1
+            }else{
+                low = mid+1
+            }
+        }else{
+            if(arr[mid] <=key && key<= arr[high]){
+                low = mid+1
+            }else{
+                high = mid -1;
+            }
+        }
+    }
+    return index;
+}
+// console.log(searchkeyInRotatedArrayWithDuplicates([7, 8, 1, 2, 3, 3, 3, 4, 5, 6],2));
+
+
+// find minimum in a rotated sorted array
+// bruteforce algorithm
+
+function minimumValueInRotatedSortedArray(arr){
+    let min = Infinity;
+    for(let i=0;i<arr.length;i++){
+        min = Math.min(min,arr[i]);
+    }
+    return min;
 }
 
-// console.log(searchInRotatedSortedArray([4,5,6,7,0,1,2],0)); //4
+// console.log(minimumValueInRotatedSortedArray([7,8,9,1,2,3,4]))
+
+function minimumValueInRotatedSortedArrayBS(arr){
+    let low = 0;
+    let high = arr.length -1;
+    while(low<high){
+        const mid = Math.floor(low + (high - low) / 2);
+        if(arr[mid] >arr[high]){
+            low  = mid +1
+        }else{
+            high = mid
+        }
+    }
+    return arr[low]
+}
+
+// console.log(minimumValueInRotatedSortedArrayBS([7,8,9,1,2,3]))
+
+// find number of times the array has been rotated
+
+// Bruteforce algorithm -> Linear search algorithm
+function numberOfRotationsInArray(arr){
+    let arrLen = arr.length;
+    for(let i=0;i<arrLen;i++){
+        if(arr[i] > arr[i+1]){
+            return i+1;
+        }
+    }
+    return 0;
+}
+// console.log(numberOfRotationsInArray([7,8,9,1,2,3]));
+function numberOfRotationsInArrayBS(arr){
+    let low = 0;
+    let high = arr.length -1;
+    while(low<high){
+        let mid = low + Math.floor((high-low)/2);
+        // If mid element is greater than element at high,
+        // smallest element lies to the right of mid
+        if (arr[mid] > arr[high]) {
+            low = mid + 1;
+        } else {
+            // Else smallest element is at mid or to the left
+            high = mid;
+        }
+    }   
+    return low; 
+}
+// console.log(numberOfRotationsInArrayBS([7,8,9,1,2,3,4]));
+
+// single element in a sorted array -> find element that occurs only once;
+// bruteforce approach -1
+function findSingleElementOcuuranceInArray(arr){
+    let arrLen = arr.length;
+    // if the length of array is 1. return that element
+    if(arrLen === 1) return arr[0];
+    
+    //If the current element is the first one, compare it with the next. If they are different, return it.
+
+    for(let i=0;i<arrLen;i++){
+        if(i === 0){
+            if(arr[i] !== arr[i+1]){
+                return arr[i]
+            }
+        }else if(i == arrLen -1){
+            if(arr[i]!== arr[i-1]){
+                return arr[i]
+            }
+        }else{
+            if(arr[i] !== arr[i-1] && arr[i] !== arr[i+1]){
+                return arr[i]
+            }
+        }
+    }
+    return -1;
+}
+
+// console.log(findSingleElementOcuuranceInArray([1,2,2,3,3,3,4,4,4]));
+
+// bruteforce approach -2
+function findSingleElementOccuranceInArrayUsingXor(arr){
+    const arrLen = arr.length;
+    let result = 0;
+    for(let i=0;i<arrLen;i++){
+        result^=arr[i]
+    }
+    return result;
+}
+// console.log(findSingleElementOccuranceInArrayUsingXor([1,2,2,3,3,4,4]))
+
+// find the peak element in an array. current number must be greater than both the neighbours
+
+function findPeakElement(arr){
+    const arrLen = arr.length;
+    for(let i=0;i<arrLen;i++){
+        const left = (i ===0 || arr[i]>=arr[i-1]);
+        const right = (i == arrLen-1 || arr[i]>= arr[i+1])
+        if(left && right){
+            return i;
+        }
+    }
+    return -1
+}
+console.log(findPeakElement( [1, 3, 20, 4, 1, 0]))
