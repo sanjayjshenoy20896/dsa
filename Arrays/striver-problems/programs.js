@@ -890,9 +890,10 @@ function generatePascalTriangle(numRows){
   triangle.forEach((row)=>
     console.log(row.join(" "))
   )
-}
+} 
 
 // time complexity -> O(n2), Space complexity O(n2)
 // generatePascalTriangle(3);
 
 // approach 2
+
