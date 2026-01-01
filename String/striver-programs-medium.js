@@ -114,4 +114,22 @@ function countNumberOfSubstrings(s,k){
 }
 // countNumberOfSubstrings("pqpqs",2);
 
+// find the largest odd number
+function findLargestOddNumber(numString){
+    let ind = -1;
 
+    // Find the last odd digit in the string
+    let i;
+    for(i=numString.length-1;i>=0;i--){
+        if((numString[i] - '0')%2 ===1){
+            ind  = i;
+            break;
+        }
+    }
+    // Skip leading zeroes up to the found odd digit
+    i = 0;
+    while (i <= ind && numString[i] === '0') i++;
+    // Return the substring from first non-zero to the odd digit
+    return numString.substring(i, ind + 1);
+}
+console.log(findLargestOddNumber("504"))
