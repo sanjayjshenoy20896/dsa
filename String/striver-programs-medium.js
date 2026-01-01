@@ -215,6 +215,7 @@ function lengthofLongestSubstringWithNonRepatingCharsBruteforce(str){
 // console.log(lengthofLongestSubstringWithNonRepatingCharsBruteforce("cadbzabcd"));
 
 function lengthofLongestSubstringWithNonRepatingCharsOptimalAproach(str){
+    //compute the length of the string 
     let n = str.length;
 
     // create a hashtable with 256 chars without ascii
