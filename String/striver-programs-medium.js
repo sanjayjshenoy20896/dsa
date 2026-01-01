@@ -132,4 +132,118 @@ function findLargestOddNumber(numString){
     // Return the substring from first non-zero to the odd digit
     return numString.substring(i, ind + 1);
 }
-console.log(findLargestOddNumber("504"))
+// console.log(findLargestOddNumber("504"))
+
+
+/***
+ * Check if 2 strings are anagrams to each other
+ * 
+ * Approach 1: Sorting and comparison
+ * 
+ * 1.) Normalise strings
+ * a.) Convert both strings to handle case sensitivity
+ * b.) Removing non-alphanumeric characters, spaces, or punctuation if they should be ignored
+ * 
+ * 2.) Sort characters
+ * Split each normalized string into an array of characters, sort the array alphabetically, and then join it back into a string. This ensures that if the strings are anagrams, they will have the same sorted representation.
+ * 
+ * compare the 2 normalised string for quality for anagrams;
+ */
+
+
+function isStringsAnagramsToEachOther(str1,str2){
+    let  status = false
+    const normalisedString1 = str1.toLowerCase().replace(/[^a-z0-9]/g, '').split("").sort().join("");
+    const normalisedString2 = str2.toLowerCase().replace(/[^a-z0-9]/g, '').split("").sort().join("");
+    // console.log(normalisedString1);
+    // console.log(normalisedString2);
+    if(normalisedString1 === normalisedString2){
+        status = true    
+    }
+    return status
+}
+
+const anagram = isStringsAnagramsToEachOther("Tom Marvolo Riddle","I am Lord Voldemort");
+// console.log("anagram")
+// console.log(anagram)
+
+
+// grouped anagrams
+function groupedAnagrams(strings){
+    const map  = new Map();
+    for(let string of strings){
+        // create a sorted version of key
+        const sortedKey = string.toLowerCase().split("").sort().join("");
+        // check if the mapped key exits in the map
+        if(map.has(sortedKey)){
+            map.get(sortedKey).push(string)
+        }else{
+            map.set(sortedKey,[string])
+        }
+    }
+    return Array.from(map.values())
+}
+
+// console.log(groupedAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]))
+
+// Length of longest substring with non repeating characters
+function lengthofLongestSubstringWithNonRepatingCharsBruteforce(str){
+    // compute the length of the string
+    let length = str.length;
+
+    // variable to store the maximum length
+    let maxLen  = 0;
+
+    // iterate to all possible strting points of the string;
+    for(let i=0;i<length;i++){
+        // create a hash substring window with 256 characters considering ascii
+        let hash = new Array(256).fill(0);
+        for(let j=i;j<length;j++){
+            if(hash[str.charCodeAt(j)] === 1) break;
+            hash[str.charCodeAt(j)] = 1;
+            // compute the length
+            let len = j - i +1;
+
+            // find the longest length from above length and maxLength
+            maxLen = Math.max(len,maxLen)
+        }
+
+    }
+    return maxLen;
+}
+// Time complexity -> O(N2) space complexity -> O(1)
+// console.log(lengthofLongestSubstringWithNonRepatingCharsBruteforce("cadbzabcd"));
+
+function lengthofLongestSubstringWithNonRepatingCharsOptimalAproach(str){
+    let n = str.length;
+
+    // create a hashtable with 256 chars without ascii
+    let hash = new Array(256).fill(-1);
+
+    let l=0;
+    let r=0;
+    let maxLen = 0;
+    while(r<n){
+        if(hash[str.charCodeAt(r)] != -1) {
+            l = Math.max(l,hash[str.charCodeAt(r)]+1);
+        }
+        // calculate the length of substring
+        let len = r-l+1;
+        
+        // update the maxLength based on computed value
+        maxLen = Math.max(len,maxLen)
+        hash[str.charCodeAt(r)] = r;
+
+        //move the right pointer
+        r++
+    }
+    return maxLen;
+}
+// console.log(lengthofLongestSubstringWithNonRepatingCharsOptimalAproach("cadbzabcd"));
+
+//longest repeating character replacement
+// explanation
+//Given an integer k and a string s, any character in the string can be selected and changed to any other uppercase English character. 
+//This operation can be performed up to k times.
+// After completing these steps, return the length of the longest substring that contains the same letter.
+

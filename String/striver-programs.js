@@ -167,16 +167,3 @@ function isStringRotated(str1,str2){
 }
 
 // console.log(isStringRotated("rotation","tionrota"));
-
-
-// check if 2 strings are anagrams to each other;
-function isAnagramsToEachOther(str1,str2){
-    let isNormalised = false
-    let normalisedStr1 = str1.toLowerCase().split("").sort().join("");
-    let normalisedStr2 = str2.toLowerCase().split("").sort().join("");
-    if(normalisedStr1 === normalisedStr2){
-        isNormalised = true
-    }
-    return isNormalised
-}
-console.log(isAnagramsToEachOther("integer","TEGerin"))
