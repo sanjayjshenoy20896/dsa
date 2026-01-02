@@ -10,15 +10,11 @@ function flattenNumbersArrayData(userInput){
     
     //get the last element of the input data;
     let value = inputData.pop();
-    console.log("value",value);
-    console.log("typeof",typeof value);
-    console.log("result",result);
     //if it is an array, we need spread the value towards the end of the input array to process again
-    if(Array.isArray(value)){
+    if(Array.isArray(value>0)){
       inputData.push(...value)
     // if it is an object, we must get the values of the object and spread it towards the ned of the array
     }else if(typeof value === "object" && value !== null){
-      console.log("Object condition",Object.values(value))
       inputData.push(...Object.values(value));
     }else if(typeof value === "number" && !dataAlreadyPresent.has(value)) {
       // in this case it is a number, we will need to add it in the set as  well as compare if it already exists in that set
