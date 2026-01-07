@@ -132,21 +132,99 @@ function aggregationPurchases(orders){
   return userTotals;
 }
 const aggregationPurchase = aggregationPurchases(orderPurchases);
-console.log(aggregationPurchase);
+// console.log(aggregationPurchase);
 
 
+//1️⃣ Array + Object: Top K Frequent Elements
+function findTopKFrequentElements(arr,k){
+  const elementMap = new Map();
+  const kFrequentValues = []
+  for(let element of arr){
+    elementMap.set(element,(elementMap.get(element) || 0)+1);
+  }
+  const sortedCharacters = [...elementMap.entries()].sort((a,b)=>b[1] - a[1]);
+  console.log(sortedCharacters)
+ // Take top k elements
+  const topK = sortedCharacters.slice(0, k).map(([num]) => num);
+  return topK;
+}
+
+// console.log(findTopKFrequentElements([1,1,2,2,2,4],2))
+
+//finding max in k window Array: sliding window problem
+function slidingWindowMax(arr,k){
+  const result = [];
+  const deque = [];
+  
+  for(let i=0;i<arr.length;i++){
+    // 1. Remove indices from the back whose corresponding values are smaller
+        // than or equal to the current element. They are no longer useful
+        // as the current element is larger and appears later.
+      while(deque.length>0 && arr[deque[deque.length-1]] <= arr[i]){
+        deque.shift()
+      }
+      // psuh the index in deque
+      deque.push(i)
+      // 3. Remove index from the front if it's outside the current window's left boundary.
+      // The front element is always the current maximum.
+      if (deque.length > 0 && deque[0] === i - k) {
+          deque.shift();
+      }
+
+      // 4. If the window has reached size k, the front of the deque holds the maximum.
+      if (i >= k - 1) {
+          result.push(arr[deque[0]]);
+      }
+      
+  }
+  return result;
+}
+// console.log(slidingWindowMax([1,3,-1,-3,5,3,6,7],3))
+function slidingWindowMax1(arr,k){
+  const result = [];
+  const batches = [];
+  for(let i=0;i<arr.length;i++){
+    const batch = arr.slice(i,i+k);
+    if(batch.length  ===k)batches.push(batch);
+  }
+  for(let i=0;i<batches.length;i++){
+    result.push(Math.max(...batches[i]))
+  }
+  console.log(result)
+  return result;
+}
+// slidingWindowMax1([1,3,-1,-3,5,3,6,7],3)
 
 
+// product of array except self:
+function productOfArrayExceptSelf(arr){
+  let productArr = [] 
+  for(let i=0;i<arr.length;i++){
+    const filteredArray = arr.filter((element, index) => {
+      return index !== i;
+    })
+    const selfPfroduct = filteredArray.reduce((acc,cur)=> acc*cur,1);
+    productArr[i] = selfPfroduct 
+  }
+  return productArr;
+}
 
-
-
-
-
-
-
-
-
-
-
+// console.log(productOfArrayExceptSelf([1,2,3,4]))
+function productOfArrayExceptSelf1(arr){
+  const n = arr.length;
+  const result = Array(n).fill(1);
+  let prefix = 1;
+  let suffix = 1;
+  for (let i = 0; i < n; i++) {
+    result[i] = prefix;
+    prefix *= arr[i];
+  }
+  for (let i = n - 1; i >= 0; i--) {
+    result[i] *= suffix;
+    suffix *= arr[i];
+  }
+  return result;
+}
+// console.log(productOfArrayExceptSelf1([1,2,3,4]))
 
 
