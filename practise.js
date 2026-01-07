@@ -257,3 +257,67 @@ function mergeIntervals(intervals){
 }
 console.log(mergeIntervals([[1, 3], [2, 6], [8, 10], [15, 18]]))
 // [[1,6][8,10],[15,18]]
+
+
+function findingThreeLargestNumber(arr){
+  let first = Number.MIN_SAFE_INTEGER;
+  let second = Number.MIN_SAFE_INTEGER;
+  let third = Number.MIN_SAFE_INTEGER;
+  for(let i=0;i<arr.length;i++){
+    let currentElement = arr[i];
+    
+    // if the currentElement is greter than first
+    if(currentElement>first){
+      third = second;
+      second = first;
+      first = currentElement
+    }
+    
+    // if currentElement is greater than second and current currentElement not equal to first
+    else if(currentElement!=first && currentElement>second){
+      third = second;
+      second = currentElement
+    }
+    
+    // if currentElement is greater than thrid and not equal to first
+    if(currentElement!= first && currentElement!=second && currentElement >third){
+      third = currentElement
+    }
+  }
+  return {first,second,third}
+}
+function arrayFlattenning(arr){
+  // output data
+  const result = [];
+  // add already added values in set
+  const dataAlreadyPresent = new Set();
+  const inputData = [ ...arr];
+  
+ // the loop must run till its length nulltifies
+  while(inputData.length){
+    
+    //get the last element of the input data;
+    let value = inputData.pop();
+    //if it is an array, we need spread the value towards the end of the input array to process again
+    if(Array.isArray(value>0)){
+      inputData.push(...value)
+    // if it is an object, we must get the values of the object and spread it towards the ned of the array
+    }else if(typeof value === "object" && value !== null){
+      inputData.push(...Object.values(value));
+    }else if(typeof value === "number" && !dataAlreadyPresent.has(value)) {
+      // in this case it is a number, we will need to add it in the set as  well as compare if it already exists in that set
+      dataAlreadyPresent.add(value);
+      result.unshift(value);
+    }
+  }
+  return result;
+}
+
+
+function flattenArrayAndFindLargestValues(arr){
+  const input = arrayFlattenning(arr);
+  const largestValues = findingThreeLargestNumber(input);
+  return largestValues;
+}
+const result = flattenArrayAndFindLargestValues( [1,2,[[3,{'a':4}]],5,6,[7,{'b':8}],[0] ]);
+console.log(result)
