@@ -182,18 +182,14 @@ function slidingWindowMax(arr,k){
 // console.log(slidingWindowMax([1,3,-1,-3,5,3,6,7],3))
 function slidingWindowMax1(arr,k){
   const result = [];
-  const batches = [];
   for(let i=0;i<arr.length;i++){
     const batch = arr.slice(i,i+k);
-    if(batch.length  ===k)batches.push(batch);
+    if(batch.length  ===k)  result.push(Math.max(...batch))
   }
-  for(let i=0;i<batches.length;i++){
-    result.push(Math.max(...batches[i]))
-  }
-  console.log(result)
   return result;
 }
-// slidingWindowMax1([1,3,-1,-3,5,3,6,7],3)
+console.log(slidingWindowMax1([1,3,-1,-3,5,3,6,7],3))
+
 
 
 // product of array except self:
@@ -255,7 +251,7 @@ function mergeIntervals(intervals){
   }
   return mergedIntervals
 }
-console.log(mergeIntervals([[1, 3], [2, 6], [8, 10], [15, 18]]))
+// console.log(mergeIntervals([[1, 3], [2, 6], [8, 10], [15, 18]]))
 // [[1,6][8,10],[15,18]]
 
 
