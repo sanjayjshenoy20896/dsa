@@ -280,7 +280,7 @@ function findingThreeLargestNumber(arr){
     }
     
     // if currentElement is greater than thrid and not equal to first
-    if(currentElement!= first && currentElement!=second && currentElement >third){
+    else if(currentElement!= first && currentElement!=second && currentElement >third){
       third = currentElement
     }
   }
