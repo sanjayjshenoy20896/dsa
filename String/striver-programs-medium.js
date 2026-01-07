@@ -213,6 +213,8 @@ function lengthofLongestSubstringWithNonRepatingCharsBruteforce(str){
 }
 // Time complexity -> O(N2) space complexity -> O(1)
 // console.log(lengthofLongestSubstringWithNonRepatingCharsBruteforce("cadbzabcd"));
+console.log("lengthofLongestSubstringWithNonRepatingCharsBruteforce");
+console.log(lengthofLongestSubstringWithNonRepatingCharsBruteforce("abcddabac"));
 
 function lengthofLongestSubstringWithNonRepatingCharsOptimalAproach(str){
     //compute the length of the string 
