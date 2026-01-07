@@ -333,7 +333,7 @@ function findMissingAndRepeatedOA1(nums){
 // bruteforce approach -> Time complexity: O(N2) , Space complexity: O(1)
 function maximumProductBruteforce(nums){
     let arrLen = nums.length;
-    let maxProdValue = nums[0]
+    let maxProdValue = -Infinity;
     for(let i = 0;i<arrLen;i++){
         let prod = 1;
         for(let j=i;j<arrLen;j++){
