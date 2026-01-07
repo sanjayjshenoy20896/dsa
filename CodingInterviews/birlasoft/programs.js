@@ -79,3 +79,14 @@ function performObjectMappingUsingMapFunction(arr1,arr2){
 // console.log("performObjectMappingUsingMapFunction")
 // const output  = performObjectMappingUsingMapFunction([28,29,30],[29,30,31])
 // console.log(output)
+
+const promise1 = new promise((resolve, reject) => {
+console.log(1)
+resolve('resolve1')
+})
+
+const promise2 = promise1.then((res) => {
+console.log(res)
+})
+console.log('promise1:', promise1);
+console.log('promise2:', promise2);

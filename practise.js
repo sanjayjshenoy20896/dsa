@@ -228,3 +228,32 @@ function productOfArrayExceptSelf1(arr){
 // console.log(productOfArrayExceptSelf1([1,2,3,4]))
 
 
+function mergeIntervals(intervals){
+  if(!intervals || intervals.length ==0){
+    return []
+  }
+  
+  // sort intervals by start time
+  intervals.sort((a,b)=> a[0] - b[0]);
+  
+  // initialise the merged intervals array with the first intervel;
+  const mergedIntervals = [intervals[0]];
+  
+  // interate through rest of the sorted intervals
+  for(let i=1;i<intervals.length;i++){
+    // get the currentInterval
+    const currentInterval = intervals[i];
+    // get the last merged intervel
+    const lastMergedInterval = mergedIntervals[mergedIntervals.length-1];
+    
+    // Check for overlap: current interval's start time is less than or equal to the last merged interval's end time.
+    if(currentInterval[0] <= lastMergedInterval[1]){
+      lastMergedInterval[1] = Math.max(lastMergedInterval[1],currentInterval[1])
+    }else{
+      mergedIntervals.push(currentInterval)
+    }
+  }
+  return mergedIntervals
+}
+console.log(mergeIntervals([[1, 3], [2, 6], [8, 10], [15, 18]]))
+// [[1,6][8,10],[15,18]]
