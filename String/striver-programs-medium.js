@@ -250,3 +250,19 @@ function lengthofLongestSubstringWithNonRepatingCharsOptimalAproach(str){
 //This operation can be performed up to k times.
 // After completing these steps, return the length of the longest substring that contains the same letter.
 
+
+
+
+// find the first repeating character
+function findTheFirstRepeatingCharacterInAString(string){
+    let strLen = string.length;
+    let strMap = new Map();
+    for(let i=0;i<strLen;i++){
+        if(strMap.get(string[i])){
+            return string[i]
+        }else{
+            strMap.set(string[i],1);
+        }
+    }
+}
+console.log(findTheFirstRepeatingCharacterInAString("sammy"));
