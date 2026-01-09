@@ -150,6 +150,8 @@ function rightRotateByNPlaces(arr,n){
 //4123
 
 
+// left rotate and right rotate by k places in palce;
+
 // move all zeros to end of the array;
 // bruteforce approach:
 function moveAllZerosToend(arr){
@@ -939,3 +941,41 @@ function findKthSmallestElementByUsingPriorityQueue(arr,k){
   return pq[0];  
 }
 console.log(findKthSmallestElementByUsingPriorityQueue([1,15,17,9,12,2],2))
+
+
+
+// move zeros to the end
+function moveZerosToTheEnd(arr){
+  let k=0;
+  for(let i=0;i<arr.length;i++){
+    // if the current element is non zero
+    if(arr[i] !== 0){
+      [arr[i],arr[k]] = [arr[k],arr[i]]
+      k++;
+    }
+  }
+  return arr;
+}
+console.log(moveZerosToTheEnd([4,0,0,2,3]));
+
+function moveZerosToTheEndApproach2(arr){
+  let count= 0;
+  for(let i=0;i<arr.length;i++){
+    if(arr[i] ==0){
+      arr.splice(i,1);
+      count+=1;
+      i--;
+    }
+  }
+  console.log(arr);
+  while(count){
+    arr.push(0);
+    count--
+  }
+  return arr;
+}
+console.log("moveZerosToTheEndApproach2")
+console.log(moveZerosToTheEndApproach2([4,0,2,3,0]));
+
+
+

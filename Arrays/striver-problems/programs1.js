@@ -364,3 +364,61 @@ function maximumProductOptimal(nums){
     return result
 }
 console.log(maximumProductOptimal([1,2,3,4,5,0])); // 120
+
+
+// Max sum subarray of size K 
+function maxSubArrayofSizeK(arr,k){
+    let maxSum = 0;
+    let currentWindowSum = 0;
+    let arrLen = arr.length;
+
+    for(let i=0;i<k;i++){
+        currentWindowSum+=arr[i];
+    }
+    maxSum = currentWindowSum;
+    for(let i=k;i<arrLen;i++){
+        currentWindowSum+=arr[i];
+        currentWindowSum-=arr[i-k];
+        maxSum = Math.max(maxSum,currentWindowSum)
+    }
+    return maxSum;
+}
+console.log(maxSubArrayofSizeK([2,1,5,1,3],3));
+
+// find the second largest element in a unsorted array;
+function findSecondLargestElement(arr){
+    let first = -Infinity;
+    let second = -Infinity;
+    for(let i=0;i<arr.length;i++){
+        let currentNum = arr[i];
+        if(currentNum > first){
+            second = first;
+            first = currentNum
+        }else if(currentNum<first && currentNum>second){
+            second = currentNum
+        }
+    }
+    return second;
+}
+console.log(findSecondLargestElement([4,3,2,1]))
+
+
+// find majority element of candidate
+function findMajorityCandidate(arr){
+    let vote_count = 0;
+    let element = 0;
+    let n = arr.length;
+    for(let i=0;i<n;i++){
+        let currentNumber = arr[i];
+        if(vote_count == 0){
+            candidate = currentNumber;
+        }
+        if(currentNumber == candidate){
+            vote_count++
+        }else{
+            vote_count--
+        }
+    }
+    return candidate;
+}
+console.log(findMajorityCandidate([2,2,1,1,2]))

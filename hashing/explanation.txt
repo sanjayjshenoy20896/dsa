@@ -9,3 +9,7 @@ when asked about number of times an element occurs in an array.
 3->1 occurs
 10-> 0 occurs
 
+Why finding a key in map is 0(log N)
+Basically map is balanced binary search tree.
+The search space is reduced by half.
+The height of BST is always log n
