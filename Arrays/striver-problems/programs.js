@@ -926,6 +926,7 @@ console.log(findKthSmallestElementBySortingArrayAndRemovingDuplicates([1,15,17,9
 
 
 // find the kth smalles element by using priority queue
+// time complexity -> O(N * LOG K) space complexity -> O(K)
 function findKthSmallestElementByUsingPriorityQueue(arr,k){
   let pq = [];
   arr.forEach((number)=>{
@@ -937,6 +938,4 @@ function findKthSmallestElementByUsingPriorityQueue(arr,k){
   })
   return pq[0];  
 }
-
-
 console.log(findKthSmallestElementByUsingPriorityQueue([1,15,17,9,12,2],2))
