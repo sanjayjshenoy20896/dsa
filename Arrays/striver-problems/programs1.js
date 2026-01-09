@@ -422,3 +422,26 @@ function findMajorityCandidate(arr){
     return candidate;
 }
 console.log(findMajorityCandidate([2,2,1,1,2]))
+
+
+// find missing number and repeated number
+function findRepeatedNumberAndMissingNumber(arr){
+    let numMap = Array(arr.length +1).fill(0);
+    for(let num of arr){
+        numMap[num]++
+    }
+    console.log(numMap)
+    let repeatedNum =null;
+    for(let i=0;i<arr.length;i++){
+        if(numMap[arr[i]]>1){
+            repeatedNum = arr[i]
+       }
+    }
+    let arrLen = arr.length
+    let sumN = (arrLen * (arrLen -1))/2;
+    let arrSum = arr.reduce((acc,cur)=>acc+cur,0);
+    let missingNumber = arrSum - sumN
+    return {missingNumber,repeatedNum}
+}
+
+console.log(findRepeatedNumberAndMissingNumber([1,2,2,4]))
