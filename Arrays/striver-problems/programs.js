@@ -874,26 +874,36 @@ console.log(countLengthOfSubArrayWithTargetSum([3,1,2,4],6));
 console.log(countLengthOfSubArrayWithTargetSum([1,2,3],3))
 
 
-// Pascal Triangle
-// N=5 -> length of the triangle
-// approach 1: 
-function generatePascalTriangle(numRows){
-  let triangle = [];
+// find the kth largest element
+function findKthLargestElementBySortingTheArray(arr,k){
+  arr.sort((a,b)=> b-a);
+  return arr[k - 1];
+}
 
-  for(let i=0;i<numRows;i++){
-    let row = new Array(i+1).fill(1);
-    for(let j=1;j<i;j++){
-      row[j] = triangle[i-1][j-1] + triangle[i-1][j]
+console.log(findKthLargestElementBySortingTheArray([1,2,3,4],2));
+console.log(findKthLargestElementBySortingTheArray([1,15,17,9,12,2],2))
+
+// find the kth largest element by removing duplicates and sorting the array
+function findKthLargestElementBySortingTheArrayAndRemovingDuplicates(arr,k){
+  let inputArr = [... new Set(arr)]
+  inputArr.sort((a,b)=> b-a);
+  return arr[k-1];
+}
+
+console.log(findKthLargestElementBySortingTheArrayAndRemovingDuplicates([1,15,17,9,12,2,12],2));
+
+// find the kth largest element by using the priority queue
+function findKthLargestElementByUsingPriorityQueue(arr,k){
+
+   // Min heap to store K largest elements
+  let priorityQueue = [];
+  arr.forEach((number)=>{
+    priorityQueue.push(number);
+    priorityQueue.sort((a,b)=> a-b);
+    if(priorityQueue.length>k){
+      priorityQueue.shift()
     }
-    triangle.push(row)
-  }
-  triangle.forEach((row)=>
-    console.log(row.join(" "))
-  )
-} 
-
-// time complexity -> O(n2), Space complexity O(n2)
-// generatePascalTriangle(3);
-
-// approach 2
-
+  })
+  return priorityQueue[0];
+}
+console.log(findKthLargestElementByUsingPriorityQueue([1,15,17,9,12,2,2,2,2],2))
