@@ -46,3 +46,7 @@ const multiply = function(a, b) {
 };
 
 console.log(multiply(2, 3)); // Output: 6 (works after definition)
+
+/**
+ * In modern JavaScript, using function expressions with const is often preferred for more predictable behavior as it avoids the potential confusion of hoisting and forces a logical top-down flow of code execution. 
+ */
