@@ -26,6 +26,11 @@ function isStringsAnagramsToEachOther(str1,str2){
     return status
 }
 
+/***
+ * Complexity analysis:
+ * Time Complexity: O(N log N) due to the sorting operation.
+Space Complexity: O(N) as new strings and arrays are typically created during the process in JavaScript due to string immutability. 
+ */
 const anagram = isStringsAnagramsToEachOther("Tom Marvolo Riddle","I am Lord Voldemort");
 // console.log("anagram")
 // console.log(anagram)
