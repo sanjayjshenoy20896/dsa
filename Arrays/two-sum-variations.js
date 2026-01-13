@@ -45,3 +45,18 @@ function checkIfPairExistsThatMatchesTargetSum(arr,k){
 
 console.log("checkIfPairExistsThatMatchedTargetSum -> optimised approach");
 console.log(checkIfPairExistsThatMatchesTargetSum([1,2,3,4,5,6,7,8,9],10))
+
+
+// return index of the pair that match the target sum from input array
+function findIndexThatMatchesTargetSum(arr,target){
+  const map = new Map(); // Map to store element -> index
+  for(let i=0;i<arr.length;i++){
+    let complement = target - arr[i];
+    if(map.has(complement)){
+      return [map.get(complement),i]
+    }
+    map.set(arr[i],i)
+  }
+  return [-1,-1]
+}
+console.log(findIndexThatMatchesTargetSum([1,2,3,4,5,6,7,8,9],10))

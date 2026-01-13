@@ -16,4 +16,8 @@ function sortCharactersByFrequency(str){
     }
     return {result,results};
 }
+/**
+ * Complexity analysis:
+ * time complexity of O(n) and a space complexity of O(k)
+ */
 // console.log(sortCharactersByFrequency("tree"))

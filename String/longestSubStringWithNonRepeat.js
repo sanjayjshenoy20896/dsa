@@ -52,6 +52,8 @@ function lengthofLongestSubstringWithNonRepatingCharsOptimalAproach(str){
         //move the right pointer
         r++
     }
-    return maxLen;
+    // console.log(str.slice(l,r))
+    return {maxLen,string:str.slice(l,r)};
 }
-// console.log(lengthofLongestSubstringWithNonRepatingCharsOptimalAproach("cadbzabcd"));
+console.log("lengthofLongestSubstringWithNonRepatingCharsOptimalAproach")
+console.log(lengthofLongestSubstringWithNonRepatingCharsOptimalAproach("cadbzabcd"));

@@ -6,7 +6,6 @@ function moveZeroToTheEnd(arr){
             arr[nonZeroPointer++] = arr[i];
         }
     }
-    console.log(nonZeroPointer)
     while (nonZeroPointer < arr.length)
         arr[nonZeroPointer++] = 0;
     return arr;
