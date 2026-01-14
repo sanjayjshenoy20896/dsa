@@ -73,3 +73,35 @@ function fibonacci(n){
 }
 const fibonacciOf5 = fibonacci(4);
 console.log(fibonacciOf5); // 5
+
+
+
+// factorial of a number
+function factorialOfNumber(n){
+    if(n<0){
+        return -1
+    }
+    if(n===0 || n===1){
+        return 1
+    }
+    
+    return n * factorialOfNumber(n-1);
+}
+console.log("factorial of a number using recursion");
+console.log(factorialOfNumber(3))
+
+function factorialOfANumberUsingLoops(n){
+    if(n<0){
+        return -1
+    }
+    if(n===0 || n===1){
+        return 1
+    }
+    let result = 1;
+    for(let i=1;i<=n;i++){
+        result*=i
+    }
+    return result;
+}
+console.log("Factorial of a number using loops");
+console.log(factorialOfANumberUsingLoops(3))

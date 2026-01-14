@@ -4,6 +4,11 @@
  * 
  * This enables the inner function to access and "remember" the variables and parameters of its outer function, even after the outer function has finished executing. 
  * 
+ * Lexical scoping:
+ * programming rule where a variable's accessibility is determined by its physical location (textual structure) in the source code, 
+ * allowing inner functions to access variables from their enclosing (outer) scopes, but not vice-versa, 
+ * creating a "scope chain" that goes from inner to outer environments at compile time
+ * 
  * Working
  * Javascript uses lexical scoping to determine the availablility of the variables in their physical location in the soource code
  * When a function is defined inside another, the inner function maintains a hidden reference to the outer function's scope

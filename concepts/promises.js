@@ -21,7 +21,7 @@ You interact with promises using handler methods attached to the promise object:
 let myPromise = new Promise((resolve, reject) => {
   // Simulate an asynchronous operation (e.g., fetching data)
   setTimeout(() => {
-    const success = false; // Change to false to see the reject case
+    const success = true; // Change to false to see the reject case
     if (success) {
       resolve("Operation successful!"); // Marks promise as fulfilled
     } else {
@@ -47,10 +47,24 @@ async function fetchData() {
   try {
     const response = await fetch('/api/data');
     const data = await response.json();
-    console.log(data);
+    console.log(data); 
   } catch (error) {
     console.error(error);
   }
 }
 
-await fetchData()
+// await fetchData()
+
+
+async function fetchData1() {
+  try {
+    const response = await myPromise;
+    console.log(response);
+    // const data = await response.json();
+    // console.log("data:",data); 
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+await fetchData1()
