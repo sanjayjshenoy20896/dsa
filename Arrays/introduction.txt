@@ -39,3 +39,23 @@ Usage:
 5.) CPU scheduling
 6.) Used in implementing other data structures like stacks, queues,heaps,linked lists and hash tables
  
+
+
+Questions:
+1.) Two sum problem
+2.) best time to buy and sell stocks
+3.) maximum sub array kadanes algo
+4.) move zeros
+5.) rotate array
+6.) merge sorted array
+pattern builders
+7.) subarray sum  equals k
+8.) Maximum product subarray
+9.) majority element
+10.) product of array except self
+11.) longest subarray with target sum
+12.) minimum size sub array
+interview traps
+13.) contains duplicate
+14.) find missing number
+15.) set matrix zeros
