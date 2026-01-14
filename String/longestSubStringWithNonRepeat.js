@@ -39,7 +39,11 @@ function lengthofLongestSubstringWithNonRepatingCharsOptimalAproach(str){
     let r=0;
     let maxLen = 0;
     while(r<n){
+        /* If current character s[r] 
+               is already in the substring */
         if(hash[str.charCodeAt(r)] != -1) {
+             /* Move left pointer to the right
+                   of the last occurrence of s[r] */
             l = Math.max(l,hash[str.charCodeAt(r)]+1);
         }
         // calculate the length of substring
@@ -47,6 +51,8 @@ function lengthofLongestSubstringWithNonRepatingCharsOptimalAproach(str){
         
         // update the maxLength based on computed value
         maxLen = Math.max(len,maxLen)
+         /* Store the index of the current
+               character in the hash table */
         hash[str.charCodeAt(r)] = r;
 
         //move the right pointer

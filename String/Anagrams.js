@@ -55,3 +55,4 @@ function groupedAnagrams(strings){
 // console.log(groupedAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]))
 //Time Complexity: O(N * K log K)
 //Space Complexity: O(N * K)
+// k is the length of the unique worded string
