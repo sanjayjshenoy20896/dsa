@@ -12,7 +12,7 @@ function sortColorsDutchNationalFlagAlgo(arr){
     let low=0;
     let high=arr.length -1;
     let mid =0 
-    if(mid<=high){
+    while(mid<=high){
         if(arr[mid] ==0){
             [arr[low],arr[mid]] = [arr[mid],arr[low]]
             low++;
