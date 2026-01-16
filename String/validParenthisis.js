@@ -20,3 +20,4 @@ function validParentheisUsingStack(str){
 console.log(validParentheisUsingStack("{}"));
 console.log(validParentheisUsingStack("{}[]()"));
 console.log(validParentheisUsingStack("[}"));
+console.log(validParentheisUsingStack("{[()]}"))
