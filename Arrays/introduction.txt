@@ -59,3 +59,8 @@ interview traps
 13.) contains duplicate
 14.) find missing number
 15.) set matrix zeros
+
+
+
+
+Valid parentheisis -> string (stack problem)
