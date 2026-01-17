@@ -7,6 +7,8 @@ function sortColorsBuildtIn(arr){
     return arr.sort((a,b)=> a-b)
 }
 
+// complexity analysis for below approach
+// complexity analysis: Time -> O(N) Space: O(1)
 // dutch national flag
 function sortColorsDutchNationalFlagAlgo(arr){
     let low=0;
