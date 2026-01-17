@@ -39,7 +39,7 @@ function sortColorsUsingCountingAlgorithm(arr){
         }else if(arr[i] ==1){
             onesCount++
         }else{
-            twosCount
+            twosCount++
         }
     }
     for(let i=0;i<=zerosCount;i++){
