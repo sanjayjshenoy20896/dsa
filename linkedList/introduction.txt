@@ -1,0 +1,32 @@
+Linked List : Introduction
+
+It can be visualized as a chain with different nodes connected, where each node represents a different element.
+
+Unlike arrays they are not stored in continous memory allocations.
+Elements are stored in non catagious memory allocations;
+
+Linked list required 2 crucial piece of information for staorage
+1.) Head -> It is described as the first node in a LL
+2.) Tail -> It is described as the last node in a LL
+
+the next is used to describe the next node in a Linked list.
+
+Pointers:
+A pointer is a variable that stores the memory address of another variable
+it "points" to the location in memory where data is stored.
+The data can be accessed or manipulated by using the memory address
+
+Application:
+1.) Creating data structures such as stacks and queues
+2.) Dynamic memory allocation
+3.) Web browser
+
+Types of linked list
+1.) Single Linked List
+each node points to the next node in the sequence
+it moves in one direction from head to tail
+2.) Double Linked List
+each node points to both the next node and the previous node
+bidirection traversal
+3.) Circulat Linked List
+each node points to both the next node and the previous node
