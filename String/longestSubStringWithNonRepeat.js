@@ -63,3 +63,4 @@ function lengthofLongestSubstringWithNonRepatingCharsOptimalAproach(str){
 }
 console.log("lengthofLongestSubstringWithNonRepatingCharsOptimalAproach")
 console.log(lengthofLongestSubstringWithNonRepatingCharsOptimalAproach("cadbzabcd"));
+console.log(lengthofLongestSubstringWithNonRepatingCharsOptimalAproach("abcdabcdac"));
