@@ -27,6 +27,7 @@ console.log(productOFArrayExceptSelf([0,12]))
 
 
 // bruteforce
+// Complexity: time -> O(N2) space -> o(n)
 function productOFArrayExceptSelfBruteforce(arr){
     const n = arr.length;
     let result = Array(n).fill(1);
