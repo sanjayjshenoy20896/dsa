@@ -27,9 +27,33 @@ function findMissingWithXor(arr) {
 }
 let inputArray = [1,2,4,5,6];
 let output = findMissingNumberInAnArray(inputArray);
-console.log(output);
+// console.log(output);
 let outputArray = findMissingWithXor(inputArray);
-console.log(outputArray);
+// console.log(outputArray);
+
+function findMissingElements(arr){
+  const n = arr.length;
+  let freq = Array(n).fill(0);
+  let repeating = -1;
+  let missing = -1;
+  for(let i=0;i<n;i++){
+    freq[arr[i]]++
+  }
+  for(let i=1;i<n;i++){
+    if(freq[i] ==2){
+      repeating = i
+    }
+    if(freq[i] ==0){
+      missing = i
+    }
+  }
+  return {
+    repeating,
+    missing
+  }
+}
+const duplicateArray = [1,2,2,4];
+console.log(findMissingElements(duplicateArray))
 
 
 

@@ -1,3 +1,4 @@
+//unique number 1
 function findSinglePersonInGroupOfCouples(arr){
     let freq = new Map();
     for(let i=0;i<arr.length;i++){
