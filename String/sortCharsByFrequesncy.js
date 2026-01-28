@@ -17,3 +17,13 @@ function sortCharactersByFrequency(str){
     return {result,results};
 }
 // console.log(sortCharactersByFrequency("tree"))
+
+function getCharacterFrequencies(str){
+    const charFrequency = new Map();
+    for(let char of str){
+        charFrequency.set(char,(charFrequency.get(char)|| 0)+1)
+    }
+    return Object.fromEntries(charFrequency);
+}
+console.log("sortCharactersByFrequency");
+console.log(getCharacterFrequencies("tree"));
