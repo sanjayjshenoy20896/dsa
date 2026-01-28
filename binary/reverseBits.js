@@ -13,6 +13,7 @@ console.log(reverseBitsBruteforce(8))
 
 
 // optimal approach
+// complexity analysis: O(log N) time and O(1) space
 function reverseBitsOptimalApproach(num){
     let result = 0;
     while(num>0){
