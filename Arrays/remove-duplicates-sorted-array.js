@@ -11,7 +11,9 @@ function removeDuplicatesFromSortedArray(arr){
     }
     return arr;
 }
-console.log(removeDuplicatesFromSortedArray([2,2,2,2]))
-console.log(removeDuplicatesFromSortedArray([1,2,2,3,4]))
+console.log("remove duplicates from sorted array -> my approach");
+// console.log(removeDuplicatesFromSortedArray([2,2,2,2]))
+// console.log(removeDuplicatesFromSortedArray([1,2,2,3,4]))
+
 
 
