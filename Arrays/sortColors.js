@@ -29,7 +29,7 @@ function sortColorsDutchNationalFlagAlgo(arr){
     return arr;
 }
 
-
+// complexity analysis: Time -> O(N) Space: O(1)
 //using counting algo
 function sortColorsUsingCountingAlgorithm(arr){
     let onesCount = 0;
