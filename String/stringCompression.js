@@ -16,7 +16,7 @@ function stringCompression(str){
     // Handle the last sequence of characters
     return compressedString;
 }
-const string = "aaabbcccc";
+const string = "aaabbccccaa";
 console.log(stringCompression(string)); // Output: "a3b2c4"
 
 // if char is not consecutive
