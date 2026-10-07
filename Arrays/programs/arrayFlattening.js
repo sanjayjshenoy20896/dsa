@@ -11,7 +11,7 @@ function flattenNumbersArrayData(userInput){
     //get the last element of the input data;
     let value = inputData.pop();
     //if it is an array, we need spread the value towards the end of the input array to process again
-    if(Array.isArray(value>0)){
+    if(Array.isArray(value)){
       inputData.push(...value)
     // if it is an object, we must get the values of the object and spread it towards the ned of the array
     }else if(typeof value === "object" && value !== null){

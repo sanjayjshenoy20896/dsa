@@ -27,10 +27,10 @@ function doesArrayContainDuplicatesBetterApproach(arr){
         }
     }
     return isDuplicate
-}
+} 
 // complexity analysis -> Time complexity -> O(n log n) Space complexity -> O(1)
-// console.log(doesArrayContainDuplicatesBetterApproach([1,2,3,4,1]));
-// console.log(doesArrayContainDuplicatesBetterApproach([1,2,3,4]))
+console.log(doesArrayContainDuplicatesBetterApproach([1,2,3,4,1]));
+console.log(doesArrayContainDuplicatesBetterApproach([1,2,3,4]))
 
 function doesArrayContainDuplicatesOptimalApproach(arr){
     const uniqueElements = new Set(arr);
